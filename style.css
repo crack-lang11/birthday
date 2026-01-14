@@ -1,0 +1,178 @@
+body, html {
+  margin: 0; padding: 0;
+  background: #001f3f; color: white;
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+}
+
+#mainStage, #giftStage {
+    height: 100vh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    transition: opacity 1s ease;
+}
+
+.hidden { display: none !important; }
+
+/* CAKE DESIGN */
+.cake-container {
+    position: relative;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-tier {
+    background: #ff85a2; /* Pink frosting */
+    border-radius: 10px 10px 0 0;
+    box-shadow: inset 0 -15px 0 rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.tier-top { width: 80px; height: 50px; }
+.tier-middle { width: 140px; height: 60px; margin-top: -5px; background: #ff7495; }
+.tier-bottom { width: 200px; height: 70px; margin-top: -5px; background: #f86286; }
+
+.cake-plate {
+    width: 250px; height: 10px;
+    background: #ccc; border-radius: 10px;
+}
+
+/* CANDLE ON CAKE */
+.candle {
+    position: absolute;
+    top: -45px; /* Sits on top tier */
+    width: 12px; height: 45px;
+    background: linear-gradient(to right, #eee, #fff, #eee);
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.flame {
+    position: absolute; top: -18px; left: 50%;
+    transform: translateX(-50%);
+    width: 12px; height: 20px;
+    background: radial-gradient(circle, #ffeb3b, #ff9800);
+    border-radius: 50% 50% 20% 20%;
+    box-shadow: 0 0 15px orange;
+    animation: flicker 0.1s infinite alternate;
+}
+
+.wick {
+    position: absolute; top: -5px; left: 50%;
+    transform: translateX(-50%);
+    width: 2px; height: 6px; background: #333;
+}
+
+@keyframes flicker {
+    to { transform: translateX(-50%) scale(1.1) rotate(2deg); opacity: 0.8; }
+}
+
+/* GIFT BOX & CARD */
+#giftBox {
+    position: relative; width: 140px; height: 110px;
+    background: #d63031; cursor: pointer; margin-top: 40px;
+}
+.lid {
+    position: absolute; top: -15px; left: -5px;
+    width: 150px; height: 25px; background: #ff7675;
+    transition: 0.8s cubic-bezier(0.17, 0.67, 0.44, 1.34);
+}
+
+#wishCard {
+    position: fixed; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 320px; background: white; color: #333;
+    padding: 30px; border-radius: 20px; text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    z-index: 9999; transition: 0.6s cubic-bezier(.17,.67,.44,1.34);
+}
+#wishCard.active { transform: translate(-50%, -50%) scale(1); }
+
+#confettiCanvas { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 500; }
+/* CAKE DESIGN WITH DECORATIONS */
+.cake-container {
+    position: relative;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-tier {
+    position: relative;
+    background: #ff85a2; /* Base Frosting */
+    border-radius: 15px 15px 0 0;
+    box-shadow: inset 0 -15px 0 rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+/* Creamy Drips & Sprinkles */
+.cake-tier::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 25px;
+    background-image: 
+        radial-gradient(circle, #fff 5px, transparent 6px), /* Drips */
+        radial-gradient(circle, #fff 5px, transparent 6px);
+    background-size: 20px 40px;
+    background-position: 0 0, 10px 0;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+/* Specific Tier Sizes */
+.tier-top { 
+    width: 90px; height: 60px; 
+    background: #ff85a2;
+    z-index: 3;
+}
+.tier-middle { 
+    width: 150px; height: 70px; 
+    margin-top: -5px; 
+    background: #ff7495; 
+    z-index: 2;
+}
+.tier-bottom { 
+    width: 210px; height: 80px; 
+    margin-top: -5px; 
+    background: #f86286; 
+    z-index: 1;
+}
+
+/* Tier-specific decorations (Sprinkles) */
+.tier-bottom::before {
+    content: "• . • . • . •";
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 20px;
+    letter-spacing: 15px;
+}
+
+/* Cake Plate */
+.cake-plate {
+    width: 270px; height: 12px;
+    background: #e0e0e0;
+    border-radius: 50%;
+    margin-top: -5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Updated Candle Position */
+.candle {
+    position: absolute;
+    top: -50px;
+    width: 14px; height: 50px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 5px,
+        #ff4757 5px,
+        #ff4757 10px
+    ); /* Spiral stripes on candle */
+    border-radius: 3px;
+    z-index: 10;
+}
